@@ -1,0 +1,19 @@
+{% load static %}
+
+<header>{% include 'header.html' %}</header>
+
+<body>
+  {% for home in homes %}
+  <div class="card-panel hoverable grey lighten-3">
+    <a href="{% url 'homes_detail' home.id %}">
+      <div class="card-content green-text text-darken-4">
+        <span class="card-title">{{ home.nickname }}</span>
+        <p>Make: {{ home.address }}</p>
+      </div>
+    </a>
+  </div>
+
+  {%empty%}
+  <div>No homes</div>
+  {% endfor %}
+</body>

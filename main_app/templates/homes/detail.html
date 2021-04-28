@@ -1,0 +1,27 @@
+{% load static %}
+
+<header>{% include 'header.html' %}</header>
+
+<body>
+  <h1 class="center-align">home details</h1>
+  <p>{{ home.address}}, {{home.city}} {{home.state}}</p>
+  <a href="{% url 'update_home' home.id %}">Edit home</a>
+  <h1>Home Projects</h1>
+
+  <a class="btn" href="{% url 'create_project' %}">add Project</a>
+
+  {% comment %} -------------------- List showing projects of the home {% for
+  project in home.projects.all %}
+  <div class="card-panel hoverable grey lighten-3">
+    <a href="{% url 'projects_detail' project.id %}">
+      <div class="card-content green-text text-darken-4">
+        <span class="card-title">Project</span>
+        <p>{{ project.name }}</p>
+      </div>
+    </a>
+  </div>
+
+  {%empty%}
+  <div>No projects</div>
+  {% endfor %} {% endcomment %}
+</body>
