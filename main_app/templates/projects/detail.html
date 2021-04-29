@@ -6,4 +6,6 @@
   <h1 class="center-align">Project detail</h1>
   <p>{{ project.name }}</p>
   <p>{{ project.notes }}</p>
+  <a href="{% url 'update_project' project.id %}">Edit Project</a>
+  <a class="red-text" href="{% url 'delete_project' project.id %}">Delete</a>
 </body>

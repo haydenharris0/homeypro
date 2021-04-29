@@ -8,7 +8,7 @@
     <a href="{% url 'homes_detail' home.id %}">
       <div class="card-content green-text text-darken-4">
         <span class="card-title">{{ home.nickname }}</span>
-        <p>Make: {{ home.address }}</p>
+        <p>{{ home.address }} {{ home.city }}, {{ home.state }}</p>
       </div>
     </a>
   </div>

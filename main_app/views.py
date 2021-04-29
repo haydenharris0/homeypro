@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Home, Project
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 
 def home(request):
@@ -12,13 +12,15 @@ def home(request):
 class Create_Home(CreateView):
     model = Home
     fields = ['nickname', 'address', 'city', 'state']
-    success_url = '/homes/'
 
 
-class Update_Home(CreateView):
+class Update_Home(UpdateView):
     model = Home
     fields = ['nickname', 'address', 'city', 'state']
-    success_url = '/homes_detail/'
+
+
+class Delete_Home(DeleteView):
+    model = Home
 
 
 def homes_index(request):
@@ -38,13 +40,15 @@ def homes_detail(request, home_id):
 class Create_Project(CreateView):
     model = Project
     fields = ['name', 'budget', 'notes']
-    success_url = '/homes/'
 
 
-class Update_Project(CreateView):
+class Update_Project(UpdateView):
     model = Project
     fields = ['name', 'budget', 'notes']
-    success_url = '/homes/'
+
+
+class Delete_Project(DeleteView):
+    model = Project
 
 
 def projects_index(request):

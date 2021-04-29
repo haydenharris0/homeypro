@@ -8,7 +8,7 @@ class Project(models.Model):
     notes = models.CharField(max_length=200, default="NA")
 
     def get_absolute_url(self):
-        return reverse('detail', kwargs={"project_id": self.id})
+        return reverse('project_detail', kwargs={"project_id": self.id})
 
 
 class Home(models.Model):
@@ -16,10 +16,9 @@ class Home(models.Model):
     address = models.CharField(max_length=40, default="NA")
     city = models.CharField(max_length=20, default="NA")
     state = models.CharField(max_length=20, default="NA")
-    projects = models.ManyToManyField(Project)
 
     def get_absolute_url(self):
-        return reverse('detail', kwargs={'home_id': self.id})
+        return reverse('homes_detail', kwargs={'home_id': self.id})
 
 
 class Contacts(models.Model):
