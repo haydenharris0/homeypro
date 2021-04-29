@@ -3,10 +3,43 @@
 <header>{% include 'header.html' %}</header>
 
 <body>
-  <h1 class="center-align">home details</h1>
-  <p>{{ home.address}}, {{home.city}} {{home.state}}</p>
-  <a href="{% url 'update_home' home.id %}">Edit home</a>
-  <a class="red-text" href="{% url 'delete_home' home.id %}">Delete</a>
+  <div class="center-align">
+    <h1>{{ home.nickname }}</h1>
+    <a class="btn" href="{% url 'update_home' home.id %}">Edit Home</a>
+    <a class="btn" href="{% url 'delete_home' home.id %}">Delete Home</a>
+  </div>
+
+    {% comment %} Home info grid {% endcomment %}
+          <div class="row container">
+            <div class="col s3">
+              <p>{{ home.bedrooms}} <i class="medium material-icons">bed</i></p>
+              <p>Bedrooms</p>
+            </div>
+            <div class="col s3">
+              <p>
+                {{ home.bathrooms}} &nbsp; <i class="medium material-icons">bathtub</i>
+              </p>
+              <p>Bathrooms</p>
+            </div>
+            <div class="col s3">
+              <p>
+                {{ home.square_feet}} &nbsp;
+                <i class="medium material-icons">square_foot</i>
+              </p>
+              <p>Square feet</p>
+            </div>
+            <div class="col s3">
+              <p>
+                {{ home.year_built}} &nbsp;
+                <i class="medium material-icons">schedule</i>
+              </p>
+              <p>Year built</p>
+            </div>
+          </div>
+        </div>
+        {% comment %} end of info grid {% endcomment %}
+
+
   <h1>Home Projects</h1>
 
   <a class="btn" href="{% url 'create_project' %}">add Project</a>

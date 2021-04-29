@@ -16,6 +16,10 @@ class Home(models.Model):
     address = models.CharField(max_length=40, default="NA")
     city = models.CharField(max_length=20, default="NA")
     state = models.CharField(max_length=20, default="NA")
+    bedrooms = models.IntegerField(default=0)
+    bathrooms = models.IntegerField(default=0)
+    square_feet = models.IntegerField(default=0)
+    year_built = models.IntegerField(default=0)
 
     def get_absolute_url(self):
         return reverse('homes_detail', kwargs={'home_id': self.id})

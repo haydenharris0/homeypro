@@ -11,12 +11,14 @@ def home(request):
 
 class Create_Home(CreateView):
     model = Home
-    fields = ['nickname', 'address', 'city', 'state']
+    fields = ['nickname', 'address', 'city', 'state',
+              'bedrooms', 'bathrooms', 'square_feet', 'year_built']
 
 
 class Update_Home(UpdateView):
     model = Home
-    fields = ['nickname', 'address', 'city', 'state']
+    fields = ['nickname', 'address', 'city', 'state',
+              'bedrooms', 'bathrooms', 'square_feet', 'year_built']
 
 
 class Delete_Home(DeleteView):
