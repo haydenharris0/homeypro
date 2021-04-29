@@ -4,7 +4,7 @@
 
 <body>
   {% for home in homes %}
-  <div class="card-panel hoverable grey lighten-3">
+  <div class="card small hoverable grey lighten-3">
     <a href="{% url 'homes_detail' home.id %}">
       <div class="card-content green-text text-darken-4">
         <span class="card-title">{{ home.nickname }}</span>

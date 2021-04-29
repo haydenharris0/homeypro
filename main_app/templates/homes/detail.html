@@ -39,23 +39,21 @@
         </div>
         {% comment %} end of info grid {% endcomment %}
 
-
-  <h1>Home Projects</h1>
-
-  <a class="btn" href="{% url 'create_project' %}">add Project</a>
-
-  {% comment %} -------------------- List showing projects of the home {% for
-  project in home.projects.all %}
-  <div class="card-panel hoverable grey lighten-3">
-    <a href="{% url 'projects_detail' project.id %}">
-      <div class="card-content green-text text-darken-4">
-        <span class="card-title">Project</span>
-        <p>{{ project.name }}</p>
+        {% comment %} Project List {% endcomment %}
+        <ul class="collection with-header">
+    <li class="collection-header"><h4>Home Projects</h4></li>
+    {% for project in projects.all %}
+    <li class="collection-item">
+      <div>
+        Alvin<a href="#!" class="secondary-content"
+          ><i class="material-icons">send</i></a
+        >
       </div>
-    </a>
-  </div>
-
+    </li>
+  </ul>
   {%empty%}
   <div>No projects</div>
-  {% endfor %} {% endcomment %}
+  {% endfor %}
+  {% comment %} End Project List {% endcomment %}
+  
 </body>
