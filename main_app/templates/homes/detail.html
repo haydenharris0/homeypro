@@ -34,7 +34,7 @@
       <h4>Home Projects</h4>
       <a href="{% url 'create_project' %}">add Projects</a>
     </li>
-    {% for project in projects %}
+    {% for project in home.project_set.all %}
       <li class="collection-item">
         <div>
           {{ project.name }}<a href="{% url 'project_detail' project.id %}" class="secondary-content"><i class="material-icons">add_circle</i></a>

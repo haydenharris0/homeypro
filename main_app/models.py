@@ -1,6 +1,8 @@
 from django.db import models
 from django.urls import reverse
 
+DEFAULT_VALUE = 1
+
 
 class Home(models.Model):
     nickname = models.CharField(max_length=40, default="NA")
@@ -20,6 +22,8 @@ class Project(models.Model):
     name = models.CharField(max_length=20, default="NA")
     budget = models.IntegerField(default=0)
     notes = models.CharField(max_length=200, default="NA")
+    home = models.ForeignKey(
+        Home, on_delete=models.CASCADE, default=DEFAULT_VALUE)
 
     def get_absolute_url(self):
         return reverse('project_detail', kwargs={"project_id": self.id})
