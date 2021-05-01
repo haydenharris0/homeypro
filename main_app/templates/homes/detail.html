@@ -5,8 +5,6 @@
 <body>
   <div class="center-align">
     <h1>{{ home.nickname }}</h1>
-    <a class="btn" href="{% url 'update_home' home.id %}">Edit Home</a>
-    <a class="btn" href="{% url 'delete_home' home.id %}">Delete Home</a>
   </div>
 
   {% comment %} Home info grid {% endcomment %}
@@ -31,7 +29,7 @@
   {% comment %} end of info grid {% endcomment %}
 
   {% comment %} Project List {% endcomment %}
-  <ul class="collection with-header container">
+  <ul class="collection with-header container z-depth-5">
     <li class="collection-header">
       <h4>Home Projects</h4>
       <a href="{% url 'create_project' %}">add Projects</a>
@@ -51,7 +49,7 @@
   {% comment %} End Project List {% endcomment %}
 
   {% comment %} Contact List {% endcomment %}
-  <ul class="collection with-header container">
+  <ul class="collection with-header container z-depth-5">
     <li class="collection-header">
       <h4>Contacts</h4>
       <a href="{% url 'create_contact' %}">add Contacts</a>
@@ -70,4 +68,8 @@
       {% endfor %}
     </ul>
   {% comment %} End Project List {% endcomment %}
+
+    <a class="btn z-depth-5" href="{% url 'update_home' home.id %}">Edit Home</a>
+    <a class="btn z-depth-5" href="{% url 'delete_home' home.id %}">Delete Home</a>
+
 </body>

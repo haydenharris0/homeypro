@@ -3,17 +3,23 @@
 <header>{% include 'header.html' %}</header>
 
 <body>
-  {% for home in homes %}
-  <div class="card small hoverable grey lighten-3">
-    <a href="{% url 'homes_detail' home.id %}">
-      <div class="card-content green-text text-darken-4">
-        <span class="card-title">{{ home.nickname }}</span>
-        <p>{{ home.address }} {{ home.city }}, {{ home.state }}</p>
+  <div class="row">
+    {% for home in homes %}
+    <div class="col s12 m6">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">{{ home.nickname }}</span>
+          <p>{{ home.address }}, {{ home.city }}, {{ home.state}}.</p>
+        </div>
+        <a href="{% url 'homes_detail' home.id %}">
+          <div class="card-action hoverable amber-text text-darken-2">
+            Home details
+          </div>
+        </a>
       </div>
-    </a>
+    </div>
+    {%empty%}
+    <div>No homes</div>
+    {% endfor %}
   </div>
-
-  {%empty%}
-  <div>No homes</div>
-  {% endfor %}
 </body>
