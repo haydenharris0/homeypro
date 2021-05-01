@@ -9,51 +9,65 @@
     <a class="btn" href="{% url 'delete_home' home.id %}">Delete Home</a>
   </div>
 
-    {% comment %} Home info grid {% endcomment %}
-          <div class="row container">
-            <div class="col s3">
-              <p>{{ home.bedrooms}} <i class="medium material-icons">bed</i></p>
-              <p>Bedrooms</p>
-            </div>
-            <div class="col s3">
-              <p>
-                {{ home.bathrooms}} &nbsp; <i class="medium material-icons">bathtub</i>
-              </p>
-              <p>Bathrooms</p>
-            </div>
-            <div class="col s3">
-              <p>
-                {{ home.square_feet}} &nbsp;
-                <i class="medium material-icons">square_foot</i>
-              </p>
-              <p>Square feet</p>
-            </div>
-            <div class="col s3">
-              <p>
-                {{ home.year_built}} &nbsp;
-                <i class="medium material-icons">schedule</i>
-              </p>
-              <p>Year built</p>
-            </div>
-          </div>
-        </div>
-        {% comment %} end of info grid {% endcomment %}
+  {% comment %} Home info grid {% endcomment %}
+  <div class="row container">
+    <div class="col s3">
+      <p>{{ home.bedrooms}} <i class="medium material-icons">bed</i></p>
+      <p>Bedrooms</p>
+    </div>
+    <div class="col s3">
+      <p>{{ home.bathrooms}} &nbsp; <i class="medium material-icons">bathtub</i></p>
+      <p>Bathrooms</p>
+    </div>
+    <div class="col s3">
+      <p>{{ home.square_feet}} &nbsp; <i class="medium material-icons">square_foot</i></p>
+      <p>Square feet</p>
+    </div>
+    <div class="col s3">
+      <p>{{ home.year_built}} &nbsp;<i class="medium material-icons">schedule</i></p>
+      <p>Year built</p>
+    </div>
+  </div>
+  {% comment %} end of info grid {% endcomment %}
 
-        {% comment %} Project List {% endcomment %}
-        <ul class="collection with-header">
-    <li class="collection-header"><h4>Home Projects</h4></li>
-    {% for project in projects.all %}
-    <li class="collection-item">
-      <div>
-        Alvin<a href="#!" class="secondary-content"
-          ><i class="material-icons">send</i></a
-        >
-      </div>
+  {% comment %} Project List {% endcomment %}
+  <ul class="collection with-header container">
+    <li class="collection-header">
+      <h4>Home Projects</h4>
+      <a href="{% url 'create_project' %}">add Projects</a>
     </li>
-  </ul>
-  {%empty%}
-  <div>No projects</div>
-  {% endfor %}
+    {% for project in projects %}
+      <li class="collection-item">
+        <div>
+          {{ project.name }}<a href="{% url 'project_detail' project.id %}" class="secondary-content"><i class="material-icons">add_circle</i></a>
+        </div>
+      </li>
+      {%empty%}
+      <li class="collection-item">
+        <div>No Projects<a class="secondary-content"</a></div>
+      </li>
+      {% endfor %}
+    </ul>
   {% comment %} End Project List {% endcomment %}
-  
+
+  {% comment %} Contact List {% endcomment %}
+  <ul class="collection with-header container">
+    <li class="collection-header">
+      <h4>Contacts</h4>
+      <a href="{% url 'create_contact' %}">add Contacts</a>
+    </li>
+    {% for contact in contacts %}
+      <li class="collection-item">
+        <div>
+          <img alt="Contact Person">
+          {{ contact.name }}<a href="{% url 'contacts_detail' contact.id %}" class="secondary-content"><i class="material-icons">add_circle</i></a>
+        </div>
+      </li>
+      {%empty%}
+      <li class="collection-item">
+        <div>No Contacts<a class="secondary-content"</a></div>
+      </li>
+      {% endfor %}
+    </ul>
+  {% comment %} End Project List {% endcomment %}
 </body>

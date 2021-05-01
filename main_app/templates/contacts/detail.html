@@ -3,11 +3,11 @@
 <header>{% include 'header.html' %}</header>
 
 <body>
-  <h1 class="center-align">Project detail</h1>
+  <h1 class="center-align">Contact Detail</h1>
   <p>{{ project.name }}</p>
   <p>{{ project.notes }}</p>
-  <a href="{% url 'update_project' project.id %}">Edit Project</a>
-  <a class="red-text" href="{% url 'delete_project' project.id %}">Delete</a>
+  <a href="{% url 'update_contact' contact.id %}">Edit Project</a>
+  <a class="red-text" href="{% url 'delete_contact' contact.id %}">Delete</a>
   <input
     class="btn blue"
     value="Previous Page"

@@ -1,10 +1,11 @@
 from django.shortcuts import render
-from .models import Home, Project
+from .models import Contacts, Home, Project
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 
 def home(request):
     return render(request, 'home.html')
+
 
 # -----Home views-----
 
@@ -33,8 +34,11 @@ def homes_index(request):
 
 def homes_detail(request, home_id):
     home = Home.objects.get(id=home_id)
-    context = {'home': home}
+    projects = Project.objects.all()
+    contacts = Contacts.objects.all()
+    context = {'home': home, 'projects': projects, 'contacts': contacts}
     return render(request, 'homes/detail.html', context)
+
 
 # -----Project views-----
 
@@ -51,6 +55,7 @@ class Update_Project(UpdateView):
 
 class Delete_Project(DeleteView):
     model = Project
+    success_url = '/homes'
 
 
 def projects_index(request):
@@ -61,5 +66,30 @@ def projects_index(request):
 
 def projects_detail(request, project_id):
     project = Project.objects.get(id=project_id)
-    context = {'project': project}
+    homes = Home.objects.all()
+    context = {'project': project, 'homes': homes}
     return render(request, 'projects/detail.html', context)
+
+
+# -----Contact Views-----
+
+
+class Create_Contact(CreateView):
+    model = Contacts
+    fields = ['name', 'number', 'business', 'service', 'notes']
+
+
+class Update_Contact(UpdateView):
+    model = Contacts
+    fields = ['name', 'number', 'business', 'service', 'notes']
+
+
+class Delete_Contact(DeleteView):
+    model = Contacts
+    success_url = '/homes'
+
+
+def contacts_detail(request, contact_id):
+    contact = Contacts.objects.get(id=contact_id)
+    context = {'contact': contact}
+    return render(request, 'contacts/detail.html', context)

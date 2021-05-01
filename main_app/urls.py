@@ -22,4 +22,13 @@ urlpatterns = [
     path('projects/<int:project_id>',
          views.projects_detail, name='project_detail'),
 
+    # contact urls
+    path('contacts/create/', views.Create_Contact.as_view(), name='create_contact'),
+    path('contacts/<int:pk>/update/',
+         views.Update_Contact.as_view(), name='update_contact'),
+    path('contacts/<int:pk>/delete/',
+         views.Delete_Contact.as_view(), name='delete_contact'),
+    path('contacts/<int:contact_id>',
+         views.contacts_detail, name='contacts_detail'),
+
 ]
