@@ -4,8 +4,11 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 
 def home(request):
-    return render(request, 'home.html')
-
+    homes = Home.objects.all()
+    projects = Project.objects.all()
+    contacts = Contacts.objects.all()
+    context = {'homes': homes, 'projects': projects, 'contacts': contacts}
+    return render(request, 'home.html', context)
 
 # -----Home views-----
 
