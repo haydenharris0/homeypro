@@ -79,12 +79,12 @@ def projects_detail(request, project_id):
 
 class Create_Contact(CreateView):
     model = Contacts
-    fields = ['name', 'number', 'business', 'service', 'notes']
+    fields = ['name', 'phone', 'business', 'service', 'notes']
 
 
 class Update_Contact(UpdateView):
     model = Contacts
-    fields = ['name', 'number', 'business', 'service', 'notes']
+    fields = ['name', 'phone', 'business', 'service', 'notes']
 
 
 class Delete_Contact(DeleteView):

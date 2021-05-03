@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from phone_field import PhoneField
 
 DEFAULT_VALUE = 1
 
@@ -31,7 +32,7 @@ class Project(models.Model):
 
 class Contacts(models.Model):
     name = models.CharField(max_length=20, default="NA")
-    number = models.IntegerField(default=0)
+    phone = models.BigIntegerField(default=1111111111)
     business = models.CharField(max_length=40, default="NA")
     service = models.CharField(max_length=30, default="NA")
     notes = models.CharField(max_length=200, default="NA")
