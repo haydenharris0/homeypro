@@ -26,6 +26,7 @@ class Project(models.Model):
     notes = models.CharField(max_length=200, default="NA")
     home = models.ForeignKey(
         Home, on_delete=models.CASCADE, default=DEFAULT_VALUE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def get_absolute_url(self):
         return reverse('project_detail', kwargs={"project_id": self.id})
@@ -37,6 +38,7 @@ class Contacts(models.Model):
     business = models.CharField(max_length=40, default="NA")
     service = models.CharField(max_length=30, default="NA")
     notes = models.CharField(max_length=200, default="NA")
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def get_absolute_url(self):
         return reverse('contacts_detail', kwargs={"contact_id": self.id})

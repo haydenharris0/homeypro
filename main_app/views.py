@@ -9,11 +9,17 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 def home(request):
+    return render(request, 'home.html')
+
+
+@login_required
+def profile(request):
     homes = Home.objects.filter(user=request.user)
-    projects = Project.objects.all()
-    contacts = Contacts.objects.all()
+    projects = Project.objects.filter(user=request.user)
+    contacts = Contacts.objects.filter(user=request.user)
     context = {'homes': homes, 'projects': projects, 'contacts': contacts}
-    return render(request, 'home.html', context)
+    return render(request, 'profile/profile.html', context)
+
 
 # -----Home views-----
 
@@ -48,8 +54,8 @@ def homes_index(request):
 @login_required
 def homes_detail(request, home_id):
     home = Home.objects.get(id=home_id)
-    projects = Project.objects.all()
-    contacts = Contacts.objects.all()
+    projects = Project.objects.filter(user=request.user)
+    contacts = Contacts.objects.filter(user=request.user)
     context = {'home': home, 'projects': projects, 'contacts': contacts}
     return render(request, 'homes/detail.html', context)
 
@@ -74,7 +80,7 @@ class Delete_Project(LoginRequiredMixin, DeleteView):
 
 @login_required
 def projects_index(request):
-    projects = Project.objects.all()
+    projects = Project.objects.filter(user=request.user)
     context = {'projects': projects}
     return render(request, 'projects/index.html', context)
 
@@ -82,8 +88,7 @@ def projects_index(request):
 @login_required
 def projects_detail(request, project_id):
     project = Project.objects.get(id=project_id)
-    homes = Home.objects.all()
-    context = {'project': project, 'homes': homes}
+    context = {'project': project}
     return render(request, 'projects/detail.html', context)
 
 
@@ -121,7 +126,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('')
+            return redirect('/')
         else:
             error_message = 'Invalid sign up - try again'
     # A bad POST or a GET request, so render signup.html with an empty form

@@ -1,9 +1,11 @@
 from django.urls import path
+from django.views.generic.base import View
 from . import views
 
 urlpatterns = [
     # base urls / others
     path('', views.home, name='home'),
+    path('profile/profile/', views.profile, name='profile'),
 
     # home urls
     path('homes/create/', views.Create_Home.as_view(), name='create_home'),
