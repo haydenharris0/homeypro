@@ -1,6 +1,6 @@
 from django.db import models
 from django.urls import reverse
-from phone_field import PhoneField
+from django.contrib.auth.models import User
 
 DEFAULT_VALUE = 1
 
@@ -14,6 +14,7 @@ class Home(models.Model):
     bathrooms = models.IntegerField(default=0)
     square_feet = models.IntegerField(default=0)
     year_built = models.IntegerField(default=0)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def get_absolute_url(self):
         return reverse('homes_detail', kwargs={'home_id': self.id})

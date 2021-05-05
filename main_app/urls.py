@@ -31,4 +31,7 @@ urlpatterns = [
     path('contacts/<int:contact_id>',
          views.contacts_detail, name='contacts_detail'),
 
+    # auth urls
+    path('accounts/signup/', views.signup, name='signup'),
+
 ]

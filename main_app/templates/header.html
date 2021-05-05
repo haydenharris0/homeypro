@@ -25,9 +25,14 @@
         <ul class="right">
           {% comment %}
           <li><a href="{% url 'about' %}">About</a></li>
-          {% endcomment %}
+          {% endcomment %} {% if user.is_authenticated %}
           <li><a href="{% url 'homes_index'%}">Your Home's</a></li>
           <li><a href="{% url 'create_home' %}">Add Home</a></li>
+          <li><a href="{% url 'logout' %}">Log out</a></li>
+          {% else %}
+          <li><a href="{% url 'signup' %}">Sign Up</a></li>
+          <li><a href="{% url 'login' %}">Log In</a></li>
+          {% endif %}
         </ul>
       </div>
     </nav>

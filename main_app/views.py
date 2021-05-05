@@ -1,10 +1,15 @@
 from django.shortcuts import render
 from .models import Contacts, Home, Project
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 def home(request):
-    homes = Home.objects.all()
+    homes = Home.objects.filter(user=request.user)
     projects = Project.objects.all()
     contacts = Contacts.objects.all()
     context = {'homes': homes, 'projects': projects, 'contacts': contacts}
@@ -13,28 +18,34 @@ def home(request):
 # -----Home views-----
 
 
-class Create_Home(CreateView):
+class Create_Home(LoginRequiredMixin, CreateView):
+    model = Home
+    fields = ['nickname', 'address', 'city', 'state',
+              'bedrooms', 'bathrooms', 'square_feet', 'year_built']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
+class Update_Home(LoginRequiredMixin, UpdateView):
     model = Home
     fields = ['nickname', 'address', 'city', 'state',
               'bedrooms', 'bathrooms', 'square_feet', 'year_built']
 
 
-class Update_Home(UpdateView):
-    model = Home
-    fields = ['nickname', 'address', 'city', 'state',
-              'bedrooms', 'bathrooms', 'square_feet', 'year_built']
-
-
-class Delete_Home(DeleteView):
+class Delete_Home(LoginRequiredMixin, DeleteView):
     model = Home
 
 
+@login_required
 def homes_index(request):
-    homes = Home.objects.all()
+    homes = Home.objects.filter(user=request.user)
     context = {'homes': homes}
     return render(request, 'homes/index.html', context)
 
 
+@login_required
 def homes_detail(request, home_id):
     home = Home.objects.get(id=home_id)
     projects = Project.objects.all()
@@ -46,27 +57,29 @@ def homes_detail(request, home_id):
 # -----Project views-----
 
 
-class Create_Project(CreateView):
+class Create_Project(LoginRequiredMixin, CreateView):
     model = Project
     fields = ['name', 'budget', 'notes']
 
 
-class Update_Project(UpdateView):
+class Update_Project(LoginRequiredMixin, UpdateView):
     model = Project
     fields = ['name', 'budget', 'notes']
 
 
-class Delete_Project(DeleteView):
+class Delete_Project(LoginRequiredMixin, DeleteView):
     model = Project
     success_url = '/homes'
 
 
+@login_required
 def projects_index(request):
     projects = Project.objects.all()
     context = {'projects': projects}
     return render(request, 'projects/index.html', context)
 
 
+@login_required
 def projects_detail(request, project_id):
     project = Project.objects.get(id=project_id)
     homes = Home.objects.all()
@@ -77,22 +90,41 @@ def projects_detail(request, project_id):
 # -----Contact Views-----
 
 
-class Create_Contact(CreateView):
+class Create_Contact(LoginRequiredMixin, CreateView):
     model = Contacts
     fields = ['name', 'phone', 'business', 'service', 'notes']
 
 
-class Update_Contact(UpdateView):
+class Update_Contact(LoginRequiredMixin, UpdateView):
     model = Contacts
     fields = ['name', 'phone', 'business', 'service', 'notes']
 
 
-class Delete_Contact(DeleteView):
+class Delete_Contact(LoginRequiredMixin, DeleteView):
     model = Contacts
     success_url = '/homes'
 
 
+@login_required
 def contacts_detail(request, contact_id):
     contact = Contacts.objects.get(id=contact_id)
     context = {'contact': contact}
     return render(request, 'contacts/detail.html', context)
+
+# -----Auth-----
+
+
+def signup(request):
+    error_message = ''
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('')
+        else:
+            error_message = 'Invalid sign up - try again'
+    # A bad POST or a GET request, so render signup.html with an empty form
+    form = UserCreationForm()
+    context = {'form': form, 'error_message': error_message}
+    return render(request, 'registration/signup.html', context)
