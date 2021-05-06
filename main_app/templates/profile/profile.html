@@ -3,12 +3,14 @@
 <header>{% include 'header.html' %}</header>
 
 <body>
-  <h1 class="center-align">Your Home</h1>
+
+  <h1 class="center-align">Your Profile</h1>
+
   {% comment %} grid for Homes {% endcomment %}
-  <div class="row container">
-    <div class="col s12 m4 z-depth-5">
+  <div class="row">
+    <div class="col s4">
       <h4 class="center">Homes</h4>
-      <table>
+      <table class="highlight centered"> 
         <thead>
           <tr>
             <th>Home Nickname</th>
@@ -19,8 +21,8 @@
         {% for home in homes %}
         <tbody>
           <tr>
-            <td> <a class="black-text" href="{% url 'homes_detail' home.id %}">
-              {{ home.nickname }}</a>
+            <td>
+              <a class="black-text" href="{% url 'homes_detail' home.id %}">{{ home.nickname }}</a>
             </td>
             <td>{{ home.address }}</td>
             <td>{{ home.id }}</td>
@@ -31,10 +33,10 @@
     </div>
     {% comment %} end of grid for Homes {% endcomment %}
 
-     {% comment %} grid for projects {% endcomment %}
-    <div class="col s12 m4 z-depth-5">
+    {% comment %} grid for projects {% endcomment %}
+    <div class="col s4">
       <h4 class="center">Projects</h4>
-      <table>
+      <table class="highlight centered">
         <thead>
           <tr>
             <th>Project Name</th>
@@ -45,7 +47,9 @@
         {% for project in projects %}
         <tbody>
           <tr>
-            <td>{{ project.name }}</td>
+            <td>
+              <a class="black-text" href="{% url 'project_detail' project.id %}">{{ project.name }}</a>
+            </td>
             <td>{{ project.home.nickname }}</td>
             <td>{{ project.budget }}</td>
           </tr>
@@ -55,10 +59,10 @@
     </div>
     {% comment %} end of grid for projects {% endcomment %}
 
-     {% comment %} grid for contacts {% endcomment %}
-    <div class="col s12 m4 center z-depth-5">
+    {% comment %} grid for contacts {% endcomment %}
+    <div class="col s4">
       <h4 class="center">Contacts</h4>
-      <table>
+      <table class="highlight centered">
         <thead>
           <tr>
             <th>Contacts Name</th>
@@ -69,7 +73,9 @@
         {% for contact in contacts %}
         <tbody>
           <tr>
-            <td>{{ contact.name }}</td>
+            <td>
+              <a class="black-text" href="{% url 'contacts_detail' contact.id %}">{{ contact.name }}</a>
+            </td>
             <td>{{ contact.business }}</td>
             <td>{{ contact.phone }}</td>
           </tr>
@@ -80,4 +86,6 @@
   </div>
   </div>
   {% comment %} end grid for contacts {% endcomment %}
+
+  <a href="{% url 'create_contact' %}">add Contacts</a>
 </body>

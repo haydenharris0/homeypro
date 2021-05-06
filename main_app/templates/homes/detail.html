@@ -45,31 +45,18 @@
         <div>No Projects<a class="secondary-content"</a></div>
       </li>
       {% endfor %}
-    </ul>
+  </ul>
   {% comment %} End Project List {% endcomment %}
 
-  {% comment %} Contact List {% endcomment %}
-  <ul class="collection with-header container z-depth-5">
-    <li class="collection-header">
-      <h4>Contacts</h4>
-      <a href="{% url 'create_contact' %}">add Contacts</a>
-    </li>
-    {% for contact in contacts %}
-      <li class="collection-item">
-        <div>
-          <img alt="Contact Person">
-          {{ contact.name }}<a href="{% url 'contacts_detail' contact.id %}" class="secondary-content"><i class="material-icons">add_circle</i></a>
-        </div>
-      </li>
-      {%empty%}
-      <li class="collection-item">
-        <div>No Contacts<a class="secondary-content"</a></div>
-      </li>
-      {% endfor %}
-    </ul>
-  {% comment %} End Project List {% endcomment %}
+  <a class="btn z-depth-5" href="{% url 'update_home' home.id %}">Edit Home</a>
+  <a class="btn z-depth-5" href="{% url 'delete_home' home.id %}">Delete Home</a>
 
-    <a class="btn z-depth-5" href="{% url 'update_home' home.id %}">Edit Home</a>
-    <a class="btn z-depth-5" href="{% url 'delete_home' home.id %}">Delete Home</a>
+  
+
+
+  <form action="{% url 'add_project' home.id %}" method="post">
+    {% csrf_token %} {{ project_form.as_p }}
+      <input type="submit" class="btn green darken-4" value="Add project"/>
+    </form>
 
 </body>

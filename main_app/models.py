@@ -2,8 +2,6 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 
-DEFAULT_VALUE = 1
-
 
 class Home(models.Model):
     nickname = models.CharField(max_length=40, default="NA")
@@ -25,7 +23,7 @@ class Project(models.Model):
     budget = models.IntegerField(default=0)
     notes = models.CharField(max_length=200, default="NA")
     home = models.ForeignKey(
-        Home, on_delete=models.CASCADE, default=DEFAULT_VALUE)
+        Home, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def get_absolute_url(self):

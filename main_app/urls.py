@@ -16,6 +16,8 @@ urlpatterns = [
 
     # project urls
     path('projects/create/', views.Create_Project.as_view(), name='create_project'),
+    #     path('homes/int:home_id/project/create',
+    #          views.Create_Project.as_view(), name='create_project'),
     path('projects/<int:pk>/update/',
          views.Update_Project.as_view(), name='update_project'),
     path('projects/<int:pk>/delete/',
@@ -35,5 +37,9 @@ urlpatterns = [
 
     # auth urls
     path('accounts/signup/', views.signup, name='signup'),
+
+
+    path('homes/<int:home_id>/add_project/',
+         views.add_project, name='add_project'),
 
 ]

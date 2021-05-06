@@ -6,5 +6,5 @@ from django import forms
 class ProjectForm(ModelForm):
     class Meta:
         model = Project
-        fields = ['name', 'budget', 'notes', 'home']
-        widgets = {'home': forms.HiddenInput()}
+        fields = ['name', 'budget', 'notes']
+        # widgets = {'home': forms.HiddenInput()}

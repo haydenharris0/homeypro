@@ -1,3 +1,4 @@
+from main_app.forms import ProjectForm
 from django.shortcuts import render
 from .models import Contacts, Home, Project
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
@@ -42,6 +43,7 @@ class Update_Home(LoginRequiredMixin, UpdateView):
 
 class Delete_Home(LoginRequiredMixin, DeleteView):
     model = Home
+    success_url = '/homes'
 
 
 @login_required
@@ -56,7 +58,9 @@ def homes_detail(request, home_id):
     home = Home.objects.get(id=home_id)
     projects = Project.objects.filter(user=request.user)
     contacts = Contacts.objects.filter(user=request.user)
-    context = {'home': home, 'projects': projects, 'contacts': contacts}
+    project_form = ProjectForm()
+    context = {'home': home, 'projects': projects,
+               'contacts': contacts, 'project_form': project_form}
     return render(request, 'homes/detail.html', context)
 
 
@@ -66,6 +70,10 @@ def homes_detail(request, home_id):
 class Create_Project(LoginRequiredMixin, CreateView):
     model = Project
     fields = ['name', 'budget', 'notes']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 class Update_Project(LoginRequiredMixin, UpdateView):
@@ -98,6 +106,10 @@ def projects_detail(request, project_id):
 class Create_Contact(LoginRequiredMixin, CreateView):
     model = Contacts
     fields = ['name', 'phone', 'business', 'service', 'notes']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 class Update_Contact(LoginRequiredMixin, UpdateView):
@@ -133,3 +145,15 @@ def signup(request):
     form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
+
+
+@login_required
+def add_project(request, home_id):
+    form = ProjectForm(request.POST)
+
+    if form.is_valid():
+        new_project = form.save(commit=False)
+        new_project.home_id = home_id
+        form.instance.user = request.user
+        new_project.save()
+    return redirect('homes_detail', home_id=home_id)
