@@ -15,5 +15,4 @@ class ProjectForm(ModelForm):
         widgets = {
             'start_date': DateInput(),
             'end_date': DateInput(),
-
         }

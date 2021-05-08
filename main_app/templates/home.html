@@ -3,9 +3,57 @@
 <header>{% include 'header.html' %}</header>
 
 <body>
-  <h1>Home Page</h1>
+  <h1>Homeypro</h1>
+
+  <div>
+    <h2>What is Homeypro</h2>
+    <li>
+      As a home owner keep track of your home projects with detailed information
+      and be able to upload before and after pictures
+    </li>
+    <li>
+      If you have more than one property or if you are a contractor, you can
+      create multiple locations that each have their own projects making it
+      easier to keep everything organized
+    </li>
+  </div>
+
+  <div class="row container">
+    <div class="col s12 m4">
+      <a href="{% url 'signup'%}">
+        <div class="card-panel z-depth-5 center-align hoverable">
+          <div>
+            <i class="large material-icons black-text">add</i>
+          </div>
+          <span class="black-text"> Sign up </span>
+        </div>
+      </a>
+    </div>
+    <div class="col s12 m4">
+      <a href="{% url 'login'%}">
+        <div class="card-panel z-depth-5 center-align hoverable">
+          <div>
+            <i class="large material-icons black-text">login</i>
+          </div>
+          <span class="black-text"> login </span>
+        </div>
+      </a>
+    </div>
+    <div class="col s12 m4">
+      <a href="{% url 'profile'%}">
+        <div class="card-panel z-depth-5 center-align hoverable">
+          <div>
+            <i class="large material-icons black-text">account_circle</i>
+          </div>
+          <span class="black-text"> Your Profile </span>
+        </div>
+      </a>
+    </div>
+  </div>
 
   <h4>for Demo use</h4>
   <p>username: demo</p>
   <p>password: demo1234</p>
 </body>
+
+{% include 'footer.html' %}
