@@ -15,8 +15,9 @@ urlpatterns = [
     path('homes/<int:home_id>', views.homes_detail, name='homes_detail'),
 
     # project urls
-    path('projects/create/', views.Create_Project.as_view(), name='create_project'),
-
+    #     path('projects/create/', views.Create_Project.as_view(), name='create_project'),
+    path('homes/<int:home_id>/add_project/',
+         views.add_project, name='add_project'),
     path('projects/<int:pk>/update/',
          views.Update_Project.as_view(), name='update_project'),
     path('projects/<int:pk>/delete/',
@@ -38,7 +39,5 @@ urlpatterns = [
     path('accounts/signup/', views.signup, name='signup'),
 
 
-    path('homes/<int:home_id>/add_project/',
-         views.add_project, name='add_project'),
 
 ]

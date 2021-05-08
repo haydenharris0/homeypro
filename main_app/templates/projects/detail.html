@@ -4,8 +4,12 @@
 
 <body>
   <h1 class="center-align">Project detail</h1>
-  <p>{{ project.name }}</p>
-  <p>{{ project.notes }}</p>
+  <p>Name: {{ project.name }}</p>
+  <p>Budget: {{ project.budget }}</p>
+  <p>Home: {{ project.home }}</p>
+  <p>Start Date: {{ project.start_date }}</p>
+  <p>End Date {{ project.end_date }}</p>
+  <p>Notes: {{ project.notes }}</p>
   <a href="{% url 'update_project' project.id %}">Edit Project</a>
   <a class="red-text" href="{% url 'delete_project' project.id %}">Delete</a>
   <input

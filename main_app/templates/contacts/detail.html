@@ -6,11 +6,7 @@
   <h1 class="center-align">Contact Detail</h1>
   <p>{{ contact.name }}</p>
   <p>{{ contact.notes }}</p>
-  <a href="{% url 'update_contact' contact.id %}">Edit Project</a>
+  <a href="{% url 'update_contact' contact.id %}">Edit Contact</a>
   <a class="red-text" href="{% url 'delete_contact' contact.id %}">Delete</a>
-  <input
-    class="btn blue"
-    value="Previous Page"
-    onClick="javascript:history.go(-1);"
-  />
+  <a class="btn green darken-4" href="{% url 'profile' %}">Back to profile</a>
 </body>

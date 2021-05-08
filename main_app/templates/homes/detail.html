@@ -1,5 +1,6 @@
 {% load static %}
 
+
 <script>
   function myFunction() {
   var x = document.getElementById("myDIV");
@@ -46,9 +47,9 @@
       {% comment %} Hide / show form {% endcomment %}
       <button class="btn" onclick="myFunction()">Add Project</button>
       <div id="myDIV" style="display:none">
-        <form action="{% url 'add_project' home.id %}" method="post">
-          {% csrf_token %} {{ project_form.as_p }}
-          <input type="submit" class="btn" value="sbumit"/>
+        <form action="{% url 'add_project' home.id %}" enctype="multipart/form-data" method="post">
+          {% csrf_token %} {{ project_form.as_p  }}
+          <input type="submit" class="btn" value="sbumit new project"/>
         </form>
       </div>
     </li>
@@ -68,14 +69,5 @@
 
   <a class="btn z-depth-5" href="{% url 'update_home' home.id %}">Edit Home</a>
   <a class="btn z-depth-5" href="{% url 'delete_home' home.id %}">Delete Home</a>
-
-  {% comment %} Hide / show form {% endcomment %}
-  <button onclick="myFunction()">Click Me</button>
-  <div id="myDIV">
-    <form action="{% url 'add_project' home.id %}" method="post">
-      {% csrf_token %} {{ project_form.as_p }}
-        <input type="submit" class="btn green darken-4" value="Add project"/>
-    </form>
-  </div>
-
+  
 </body>

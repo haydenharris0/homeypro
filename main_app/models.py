@@ -14,6 +14,9 @@ class Home(models.Model):
     year_built = models.IntegerField(default=0)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.nickname
+
     def get_absolute_url(self):
         return reverse('homes_detail', kwargs={'home_id': self.id})
 
@@ -25,6 +28,8 @@ class Project(models.Model):
     home = models.ForeignKey(
         Home, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    start_date = models.DateField(null=True)
+    end_date = models.DateField(null=True)
 
     def get_absolute_url(self):
         return reverse('project_detail', kwargs={"project_id": self.id})

@@ -66,7 +66,6 @@ def homes_detail(request, home_id):
 
 # -----Project views-----
 
-
 class Create_Project(LoginRequiredMixin, CreateView):
     model = Project
     fields = ['name', 'budget', 'notes']
@@ -76,9 +75,21 @@ class Create_Project(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
+@login_required
+def add_project(request, home_id):
+    form = ProjectForm(request.POST)
+
+    if form.is_valid():
+        new_project = form.save(commit=False)
+        new_project.home_id = home_id
+        form.instance.user = request.user
+        new_project.save()
+    return redirect('homes_detail', home_id=home_id)
+
+
 class Update_Project(LoginRequiredMixin, UpdateView):
     model = Project
-    fields = ['name', 'budget', 'notes']
+    fields = ['name', 'budget', 'notes', 'start_date', 'end_date']
 
 
 class Delete_Project(LoginRequiredMixin, DeleteView):
@@ -145,15 +156,3 @@ def signup(request):
     form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
-
-
-@login_required
-def add_project(request, home_id):
-    form = ProjectForm(request.POST)
-
-    if form.is_valid():
-        new_project = form.save(commit=False)
-        new_project.home_id = home_id
-        form.instance.user = request.user
-        new_project.save()
-    return redirect('homes_detail', home_id=home_id)
