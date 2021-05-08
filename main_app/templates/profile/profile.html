@@ -62,6 +62,7 @@
     {% comment %} grid for contacts {% endcomment %}
     <div class="col s4">
       <h4 class="center">Contacts</h4>
+      <a href="{% url 'create_contact' %}">add Contacts</a>
       <table class="highlight centered">
         <thead>
           <tr>
@@ -87,5 +88,4 @@
   </div>
   {% comment %} end grid for contacts {% endcomment %}
 
-  <a href="{% url 'create_contact' %}">add Contacts</a>
 </body>
