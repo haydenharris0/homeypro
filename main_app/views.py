@@ -7,6 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Sum
 
 
 def home(request):
@@ -18,7 +19,10 @@ def profile(request):
     homes = Home.objects.filter(user=request.user)
     projects = Project.objects.filter(user=request.user)
     contacts = Contacts.objects.filter(user=request.user)
-    context = {'homes': homes, 'projects': projects, 'contacts': contacts}
+    sum_of_projects = Project.objects.filter(
+        user=request.user).aggregate(Sum("budget"))
+    context = {'homes': homes, 'projects': projects,
+               'contacts': contacts, 'sum_of_projects': sum_of_projects}
     return render(request, 'profile/profile.html', context)
 
 
