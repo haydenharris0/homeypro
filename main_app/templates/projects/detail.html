@@ -9,18 +9,56 @@
 <header>{% include 'header.html' %}</header>
 
 <body>
-  <h1 class="center-align">{{ project.name}}</h1>
-  <p>Project Name: {{ project.name }}</p>
-  <p>Budget: {{ project.budget }}</p>
-  <p>Home: {{ project.home }}</p>
-  <p>Project Start Date: {{ project.start_date }}</p>
-  <p>Project End Date {{ project.end_date }}</p>
-  <p>Project Notes: {{ project.notes }}</p>
-  <a href="{% url 'update_project' project.id %}">Edit Project</a>
-  <a class="red-text" href="{% url 'delete_project' project.id %}">Delete</a>
-  <input
-    class="btn blue"
-    value="Previous Page"
-    onClick="javascript:history.go(-1);"
-  />
+  <div class="">
+    <h1 class="center-align">{{ project.name}}</h1>
+    <p>Project Name: {{ project.name }}</p>
+    <p>Budget: {{ project.budget }}</p>
+    <p>Home: {{ project.home }}</p>
+    <p>Project Start Date: {{ project.start_date }}</p>
+    <p>Project End Date {{ project.end_date }}</p>
+    <p>Project Notes: {{ project.notes }}</p>
+  </div>
+
+  {% comment %} photo upload from {% endcomment %}
+  <div class="row">
+    <div class="col s4">
+      <form
+        action="{% url 'add_photo' project.id %}"
+        enctype="multipart/form-data"
+        method="POST"
+        class="card-panel"
+      >
+        {% csrf_token %}
+        <input type="file" name="photo-file" />
+        <br /><br />
+        <input type="submit" class="btn" value="Upload Photo" />
+      </form>
+    </div>
+  </div>
+
+  {% comment %} displaying photos {% endcomment %}
+  <div class="row container">
+    {% for photo in project.photo_set.all %}
+    <div class="col s12 m4">
+      <div class="card-panel z-depth-5 center-align">
+        <div>
+          <img class="responsive-img card-panel" src="{{photo.url}}" />
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+    {% endfor %}
+  </div>
+
+  {% comment %} edit, delete, back buttons {% endcomment %}
+  <div class="m6">
+    <a href="{% url 'update_project' project.id %}">Edit Project</a>
+    <a class="red-text" href="{% url 'delete_project' project.id %}">Delete</a>
+    <input
+      class="btn blue"
+      value="Previous Page"
+      onClick="javascript:history.go(-1);"
+    />
+  </div>
 </body>

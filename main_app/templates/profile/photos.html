@@ -1,0 +1,40 @@
+{% load static %} {% include 'header.html' %}
+
+<body>
+  <div class="row">
+    {% for photo in project.photo_set.all %}
+    <div class="col s12 m6">
+      <div class="card">
+        <div class="card-image">
+          <img class="responsive-img card-panel" src="{{photo.url}}" />
+          <span class="card-title">Card Title</span>
+        </div>
+        <div class="card-content">
+          <p>
+            I am a very simple card. I am good at containing small bits of
+            information. I am convenient because I require little markup to use
+            effectively.
+          </p>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+    {% endfor %}
+  </div>
+
+  {% comment %} displaying photos {% endcomment %}
+  <div class="row container">
+    {% for photo in project.photo_set.all %}
+    <div class="col s12 m4">
+      <div class="card-panel z-depth-5 center-align">
+        <div>
+          <img class="responsive-img card-panel" src="{{photo.url}}" />
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+    {% endfor %}
+  </div>
+</body>

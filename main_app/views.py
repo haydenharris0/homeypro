@@ -1,6 +1,6 @@
 from main_app.forms import ProjectForm
 from django.shortcuts import render
-from .models import Contacts, Home, Project
+from .models import Contacts, Home, Project, Photo
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -8,6 +8,13 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Sum
+import uuid
+import boto3
+
+S3_BASE_URL = 'https://s3-us-east-1.amazonaws.com/'
+BUCKET = 'homeypro'
+
+# ----- Base view's & profile -----
 
 
 def home(request):
@@ -21,8 +28,13 @@ def profile(request):
     contacts = Contacts.objects.filter(user=request.user)
     sum_of_projects = Project.objects.filter(
         user=request.user).aggregate(Sum("budget"))
-    context = {'homes': homes, 'projects': projects,
-               'contacts': contacts, 'sum_of_projects': sum_of_projects}
+    context = {
+        'homes': homes,
+        'projects': projects,
+        'contacts': contacts,
+        'sum_of_projects': sum_of_projects
+    }
+
     return render(request, 'profile/profile.html', context)
 
 
@@ -31,18 +43,23 @@ def profile(request):
 
 class Create_Home(LoginRequiredMixin, CreateView):
     model = Home
-    fields = ['nickname', 'address', 'city', 'state',
-              'bedrooms', 'bathrooms', 'square_feet', 'year_built']
+    fields = [
+        'nickname', 'address', 'city', 'state', 'bedrooms',
+        'bathrooms', 'square_feet', 'year_built'
+    ]
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+
         return super().form_valid(form)
 
 
 class Update_Home(LoginRequiredMixin, UpdateView):
     model = Home
-    fields = ['nickname', 'address', 'city', 'state',
-              'bedrooms', 'bathrooms', 'square_feet', 'year_built']
+    fields = [
+        'nickname', 'address', 'city', 'state', 'bedrooms',
+        'bathrooms', 'square_feet', 'year_built'
+    ]
 
 
 class Delete_Home(LoginRequiredMixin, DeleteView):
@@ -54,6 +71,7 @@ class Delete_Home(LoginRequiredMixin, DeleteView):
 def homes_index(request):
     homes = Home.objects.filter(user=request.user)
     context = {'homes': homes}
+
     return render(request, 'homes/index.html', context)
 
 
@@ -63,8 +81,13 @@ def homes_detail(request, home_id):
     projects = Project.objects.filter(user=request.user)
     contacts = Contacts.objects.filter(user=request.user)
     project_form = ProjectForm()
-    context = {'home': home, 'projects': projects,
-               'contacts': contacts, 'project_form': project_form}
+    context = {
+        'home': home,
+        'projects': projects,
+        'contacts': contacts,
+        'project_form': project_form
+    }
+
     return render(request, 'homes/detail.html', context)
 
 
@@ -76,6 +99,7 @@ class Create_Project(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+
         return super().form_valid(form)
 
 
@@ -88,6 +112,7 @@ def add_project(request, home_id):
         new_project.home_id = home_id
         form.instance.user = request.user
         new_project.save()
+
     return redirect('homes_detail', home_id=home_id)
 
 
@@ -105,6 +130,7 @@ class Delete_Project(LoginRequiredMixin, DeleteView):
 def projects_index(request):
     projects = Project.objects.filter(user=request.user)
     context = {'projects': projects}
+
     return render(request, 'projects/index.html', context)
 
 
@@ -112,6 +138,7 @@ def projects_index(request):
 def projects_detail(request, project_id):
     project = Project.objects.get(id=project_id)
     context = {'project': project}
+
     return render(request, 'projects/detail.html', context)
 
 
@@ -124,6 +151,7 @@ class Create_Contact(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+
         return super().form_valid(form)
 
 
@@ -141,6 +169,7 @@ class Delete_Contact(LoginRequiredMixin, DeleteView):
 def contacts_detail(request, contact_id):
     contact = Contacts.objects.get(id=contact_id)
     context = {'contact': contact}
+
     return render(request, 'contacts/detail.html', context)
 
 # -----Auth-----
@@ -159,4 +188,38 @@ def signup(request):
     # A bad POST or a GET request, so render signup.html with an empty form
     form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
+
     return render(request, 'registration/signup.html', context)
+
+# ----- Photo upload & views -----
+
+
+def add_photo(request, project_id):
+    # photo-file will be the "name" attribute on the <input type="file">
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        s3 = boto3.client('s3')
+        # need a unique "key" for S3 / needs image file extension too
+        key = uuid.uuid4().hex[:6] + \
+            photo_file.name[photo_file.name.rfind('.'):]
+        # just in case something goes wrong
+        try:
+            s3.upload_fileobj(photo_file, BUCKET, key)
+            # build the full url string
+            url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            # we can assign to cat_id or cat (if you have a cat object)
+            photo = Photo(url=url, project_id=project_id)
+            photo.save()
+        except:
+            print('An error occurred uploading file to S3')
+
+    return redirect('project_detail', project_id=project_id)
+
+
+@login_required
+def photos_index(request):
+    homes = Home.objects.filter(user=request.user)
+    projects = Project.objects.filter(user=request.user)
+    context = {'homes': homes, 'projects': projects, }
+
+    return render(request, 'profile/photos.html', context)

@@ -6,6 +6,7 @@ urlpatterns = [
     # base urls / others
     path('', views.home, name='home'),
     path('profile/profile/', views.profile, name='profile'),
+    path('profile/photos/', views.photos_index, name='photos_index'),
 
     # home urls
     path('homes/create/', views.Create_Home.as_view(), name='create_home'),
@@ -37,6 +38,10 @@ urlpatterns = [
 
     # auth urls
     path('accounts/signup/', views.signup, name='signup'),
+
+    # photo url
+    path('projects/<int:project_id>/add_photo/',
+         views.add_photo, name='add_photo'),
 
 
 
