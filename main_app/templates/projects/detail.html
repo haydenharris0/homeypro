@@ -37,17 +37,17 @@
   </div>
 
   {% comment %} displaying photos {% endcomment %}
-  <div class="row container">
+  <div class="row">
     {% for photo in project.photo_set.all %}
     <div class="col s12 m4">
-      <div class="card-panel z-depth-5 center-align">
-        <div>
-          <img class="responsive-img card-panel" src="{{photo.url}}" />
-        </div>
+      <div class="card-image center-align">
+        <img class="responsive-img card-panel" src="{{photo.url}}" />
       </div>
     </div>
-    {% empty %}
+    {% empty %} {% comment %}
     <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+    {% endcomment %}
+    <p>No photos</p>
     {% endfor %}
   </div>
 

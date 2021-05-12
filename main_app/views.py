@@ -11,7 +11,9 @@ from django.db.models import Sum
 import uuid
 import boto3
 
-S3_BASE_URL = 'https://s3-us-east-1.amazonaws.com/'
+# S3_BASE_URL = 'https://s3-us-east-1.amazonaws.com/'
+S3_BASE_URL = '.s3.amazonaws.com/'
+
 BUCKET = 'homeypro'
 
 # ----- Base view's & profile -----
@@ -206,8 +208,9 @@ def add_photo(request, project_id):
         try:
             s3.upload_fileobj(photo_file, BUCKET, key)
             # build the full url string
-            url = f"{S3_BASE_URL}{BUCKET}/{key}"
-            # we can assign to cat_id or cat (if you have a cat object)
+            # ------------------------------------------------------
+            # url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            url = f"https://{BUCKET}{S3_BASE_URL}{key}"
             photo = Photo(url=url, project_id=project_id)
             photo.save()
         except:
@@ -220,6 +223,7 @@ def add_photo(request, project_id):
 def photos_index(request):
     homes = Home.objects.filter(user=request.user)
     projects = Project.objects.filter(user=request.user)
-    context = {'homes': homes, 'projects': projects, }
+    photo = Photo.objects.all()
+    context = {'homes': homes, 'projects': projects, 'photo': photo}
 
     return render(request, 'profile/photos.html', context)
