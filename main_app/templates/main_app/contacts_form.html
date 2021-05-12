@@ -1,6 +1,7 @@
 {% load static %}
 
-<header>{% include 'header.html' %}</header>
+{% include 'header.html' %}
+
 <body>
   {% if object %}
   <h1 class="center-align">
@@ -21,3 +22,5 @@
     </div>
   </form>
 </body>
+
+{% include 'footer.html' %}

@@ -1,6 +1,4 @@
-{% load static %}
-
-<header>{% include 'header.html' %}</header>
+{% load static %} {% include 'header.html' %}
 
 <body>
   <h1 class="center-align">Contact Detail</h1>
@@ -10,3 +8,5 @@
   <a class="red-text" href="{% url 'delete_contact' contact.id %}">Delete</a>
   <a class="btn green darken-4" href="{% url 'profile' %}">Back to profile</a>
 </body>
+
+{% include 'footer.html' %}

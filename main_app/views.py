@@ -11,7 +11,6 @@ from django.db.models import Sum
 import uuid
 import boto3
 
-# S3_BASE_URL = 'https://s3-us-east-1.amazonaws.com/'
 S3_BASE_URL = '.s3.amazonaws.com/'
 
 BUCKET = 'homeypro'
@@ -193,6 +192,7 @@ def signup(request):
 # ----- Photo upload & views -----
 
 
+@login_required
 def add_photo(request, project_id):
     # photo-file will be the "name" attribute on the <input type="file">
     photo_file = request.FILES.get('photo-file', None)
@@ -255,6 +255,12 @@ def add_budget(request):
         new_budget.save()
 
     return redirect('budget')
+
+
+class Update_Budget(LoginRequiredMixin, UpdateView):
+    model = Budget
+    fields = ['date', 'company', 'description', 'cost', 'house']
+    success_url = '/profile/budget/'
 
 
 class Delete_Budget(LoginRequiredMixin, DeleteView):

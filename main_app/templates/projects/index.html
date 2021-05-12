@@ -1,6 +1,4 @@
-{% load static %}
-
-<header>{% include 'header.html' %}</header>
+{% load static %} {% include 'header.html' %}
 <body>
   {% for project in projects %}
 
@@ -24,3 +22,5 @@
 
   {% endfor %}
 </body>
+
+{% include 'footer.html' %}

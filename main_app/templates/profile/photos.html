@@ -17,19 +17,6 @@
     <div class="card-panel teal-text center-align">No Photos Uploaded</div>
     {% endfor %}
   </div>
-
-  {% comment %} displaying photos {% endcomment %}
-  <div class="row container">
-    {% for photo in project.photo_set.all %}
-    <div class="col s12 m4">
-      <div class="card-panel z-depth-5 center-align">
-        <div>
-          <img class="responsive-img card-panel" src="{{photo.url}}" />
-        </div>
-      </div>
-    </div>
-    {% empty %}
-    <div class="card-panel teal-text center-align">No Photos Uploaded</div>
-    {% endfor %}
-  </div>
 </body>
+
+{% include 'footer.html' %}

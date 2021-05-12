@@ -23,5 +23,5 @@ class ProjectForm(ModelForm):
 class BudgetForm(ModelForm):
     class Meta:
         model = Budget
-        fields = ['date', 'company', 'description', 'cost', 'location']
+        fields = ['date', 'company', 'description', 'cost', 'house']
         widgets = {'date': DateInput()}

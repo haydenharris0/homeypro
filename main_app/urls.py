@@ -1,6 +1,4 @@
-from os import name
 from django.urls import path
-from django.views.generic.base import View
 from . import views
 
 urlpatterns = [
@@ -17,7 +15,6 @@ urlpatterns = [
     path('homes/<int:home_id>', views.homes_detail, name='homes_detail'),
 
     # project urls
-    #     path('projects/create/', views.Create_Project.as_view(), name='create_project'),
     path('homes/<int:home_id>/add_project/',
          views.add_project, name='add_project'),
     path('projects/<int:pk>/update/',
@@ -47,8 +44,8 @@ urlpatterns = [
     # budget urls
     path('profile/budget/', views.budget, name='budget'),
     path('profile/budget/add_budget/', views.add_budget, name='add_budget'),
+    path('profile/<int:pk>/update/',
+         views.Update_Budget.as_view(), name='update_budget'),
     path('profile/<int:pk>/delete/',
          views.Delete_Budget.as_view(), name='delete_budget'),
-
-
 ]

@@ -5,10 +5,10 @@
 <body>
   {% if object %}
   <h1 class="center-align">
-    Edit <span class="green-text text-darken-4">{{ object.nickname }}</span>
+    Edit
   </h1>
   {% else %}
-  <h1 class="center-align">Add Home</h1>
+  <h1 class="center-align">Add Expense</h1>
   {% endif %}
   <form class="container" action="" method="post">
     {% csrf_token %}
@@ -17,10 +17,10 @@
     </table>
     <div class="center-align">
       <input type="submit" value="Submit!" class="btn green darken-4" />
-      <a class="btn green darken-4" href="{% url 'homes_index' %}">Cancel</a>
+      <a class="btn green darken-4" href="{% url 'budget' %}">Cancel</a>
     </div>
     </div>
-  </form>
+  </form> 
 </body>
 
 {% include 'footer.html' %}

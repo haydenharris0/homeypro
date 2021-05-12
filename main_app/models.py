@@ -61,4 +61,4 @@ class Budget(models.Model):
     description = models.CharField(max_length=200, default=" ")
     cost = models.IntegerField(default=1)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    location = models.CharField(max_length=40, default=" ")
+    house = models.CharField(max_length=40, default=" ")
