@@ -53,3 +53,12 @@ class Photo(models.Model):
 
     def __str__(self):
         return f"Photo for project_id: {self.project_id} @{self.url}"
+
+
+class Budget(models.Model):
+    date = models.DateField(null=True)
+    company = models.CharField(max_length=40, default=" ")
+    description = models.CharField(max_length=200, default=" ")
+    cost = models.IntegerField(default=1)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    location = models.CharField(max_length=40, default=" ")

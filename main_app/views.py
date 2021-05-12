@@ -1,6 +1,6 @@
-from main_app.forms import ProjectForm
+from main_app.forms import BudgetForm, ProjectForm
 from django.shortcuts import render
-from .models import Contacts, Home, Project, Photo
+from .models import Budget, Contacts, Home, Project, Photo
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -28,13 +28,10 @@ def profile(request):
     homes = Home.objects.filter(user=request.user)
     projects = Project.objects.filter(user=request.user)
     contacts = Contacts.objects.filter(user=request.user)
-    sum_of_projects = Project.objects.filter(
-        user=request.user).aggregate(Sum("budget"))
     context = {
         'homes': homes,
         'projects': projects,
         'contacts': contacts,
-        'sum_of_projects': sum_of_projects
     }
 
     return render(request, 'profile/profile.html', context)
@@ -227,3 +224,39 @@ def photos_index(request):
     context = {'homes': homes, 'projects': projects, 'photo': photo}
 
     return render(request, 'profile/photos.html', context)
+
+
+@login_required
+def budget(request):
+    homes = Home.objects.filter(user=request.user)
+    budget = Budget.objects.filter(user=request.user)
+    projects = Project.objects.filter(user=request.user)
+    budget_form = BudgetForm()
+    sum_of_expenses = Budget.objects.filter(
+        user=request.user).aggregate(Sum("cost"))
+    context = {
+        'homes': homes,
+        'budget': budget,
+        'projects': projects,
+        'budget_form': budget_form,
+        'sum_of_expenses': sum_of_expenses
+    }
+
+    return render(request, 'profile/budget.html', context)
+
+
+@login_required
+def add_budget(request):
+    form = BudgetForm(request.POST)
+
+    if form.is_valid():
+        new_budget = form.save(commit=False)
+        form.instance.user = request.user
+        new_budget.save()
+
+    return redirect('budget')
+
+
+class Delete_Budget(LoginRequiredMixin, DeleteView):
+    model = Budget
+    success_url = '/profile/budget/'

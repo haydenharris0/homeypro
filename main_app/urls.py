@@ -1,9 +1,10 @@
+from os import name
 from django.urls import path
 from django.views.generic.base import View
 from . import views
 
 urlpatterns = [
-    # base urls / others
+    # base urls & profile
     path('', views.home, name='home'),
     path('profile/profile/', views.profile, name='profile'),
     path('profile/photos/', views.photos_index, name='photos_index'),
@@ -43,6 +44,11 @@ urlpatterns = [
     path('projects/<int:project_id>/add_photo/',
          views.add_photo, name='add_photo'),
 
+    # budget urls
+    path('profile/budget/', views.budget, name='budget'),
+    path('profile/budget/add_budget/', views.add_budget, name='add_budget'),
+    path('profile/<int:pk>/delete/',
+         views.Delete_Budget.as_view(), name='delete_budget'),
 
 
 ]

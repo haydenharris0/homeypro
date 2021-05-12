@@ -1,6 +1,8 @@
+from django.db.models import fields
 from django.forms import ModelForm
+from django.forms import widgets
 from django.forms.widgets import DateInput
-from .models import Project
+from .models import Project, Budget
 from django import forms
 
 
@@ -16,3 +18,10 @@ class ProjectForm(ModelForm):
             'start_date': DateInput(),
             'end_date': DateInput(),
         }
+
+
+class BudgetForm(ModelForm):
+    class Meta:
+        model = Budget
+        fields = ['date', 'company', 'description', 'cost', 'location']
+        widgets = {'date': DateInput()}
