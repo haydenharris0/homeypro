@@ -11,12 +11,12 @@
 <body>
   <div class="">
     <h1 class="center-align">{{ project.name}}</h1>
-    <p>Project Name: {{ project.name }}</p>
-    <p>Budget: {{ project.budget }}</p>
-    <p>Home: {{ project.home }}</p>
-    <p>Project Start Date: {{ project.start_date }}</p>
-    <p>Project End Date {{ project.end_date }}</p>
-    <p>Project Notes: {{ project.notes }}</p>
+    <p><strong>Project Name:</strong> {{ project.name }}</p>
+    <p><strong>Budget:</strong> {{ project.budget }}</p>
+    <p><strong>Home:</strong> {{ project.home }}</p>
+    <p><strong>Project Start Date:</strong> {{ project.start_date }}</p>
+    <p><strong>Project End Date:</strong> {{ project.end_date }}</p>
+    <p><strong>Project Notes:</strong> {{ project.notes }}</p>
   </div>
 
   <a class="btn blue darken-4" href="{% url 'update_project' project.id %}"
