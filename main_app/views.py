@@ -228,6 +228,13 @@ def photos_index(request):
     return render(request, 'profile/photos.html', context)
 
 
+class Delete_Photo(LoginRequiredMixin, DeleteView):
+    model = Photo
+    success_url = '/profile/profile'
+
+# ----- Budget Views -----
+
+
 @login_required
 def budget(request):
     homes = Home.objects.filter(user=request.user)

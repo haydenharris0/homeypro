@@ -40,6 +40,8 @@ urlpatterns = [
     # photo url
     path('projects/<int:project_id>/add_photo/',
          views.add_photo, name='add_photo'),
+    path('projects/<int:project_id>/<int:pk>/delete/',
+         views.Delete_Photo.as_view(), name='delete_photo'),
 
     # budget urls
     path('profile/budget/', views.budget, name='budget'),

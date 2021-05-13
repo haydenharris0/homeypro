@@ -47,6 +47,9 @@
     <div class="col s12 m4">
       <div class="card-image center-align">
         <img class="responsive-img card-panel" src="{{photo.url}}" />
+        <a class="btn red" href="{% url 'delete_photo' project.id photo.id %}"
+          >Delete</a
+        >
       </div>
     </div>
     {% empty %} {% comment %}
