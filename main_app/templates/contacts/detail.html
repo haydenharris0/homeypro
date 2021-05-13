@@ -4,9 +4,11 @@
   <h1 class="center-align">Contact Detail</h1>
   <p>{{ contact.name }}</p>
   <p>{{ contact.notes }}</p>
-  <a href="{% url 'update_contact' contact.id %}">Edit Contact</a>
-  <a class="red-text" href="{% url 'delete_contact' contact.id %}">Delete</a>
-  <a class="btn green darken-4" href="{% url 'profile' %}">Back to profile</a>
+  <a class="btn blue darken-4" href="{% url 'update_contact' contact.id %}"
+    >Edit Contact</a
+  >
+  <a class="btn red" href="{% url 'delete_contact' contact.id %}">Delete</a>
+  <a class="btn blue darken-4" href="{% url 'profile' %}">Back to profile</a>
 </body>
 
 {% include 'footer.html' %}

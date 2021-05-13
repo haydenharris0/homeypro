@@ -15,6 +15,7 @@ S3_BASE_URL = '.s3.amazonaws.com/'
 
 BUCKET = 'homeypro'
 
+
 # ----- Base view's & profile -----
 
 

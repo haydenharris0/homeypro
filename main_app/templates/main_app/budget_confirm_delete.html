@@ -6,7 +6,7 @@
   <h1 class="center-align">Delete Confirmation</h1>
   <h4 class="center-align">
     Are you sure you want to delete
-    <span class="green-text text-darken-4">
+    <span>
         <div class="container">
       <div class="col s12 m4 ">
         <div class="card-panel z-depth-5 center-align">
@@ -36,8 +36,8 @@
   </h4>
   <form class="center-align" action="" method="POST">
     {% csrf_token %}
-    <input class="btn green darken-4" type="submit" value="Yes - Delete!" />
-    <a class="btn green darken-4" href="{% url 'budget' %}">Cancel</a>
+    <input class="btn red" type="submit" value="Delete!" />
+    <a class="btn blue darken-4" href="{% url 'budget' %}">Cancel</a>
   </form>
 </body>
 
