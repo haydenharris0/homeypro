@@ -44,17 +44,21 @@
   {% comment %} displaying photos {% endcomment %}
   <div class="row">
     {% for photo in project.photo_set.all %}
-    <div class="col s12 m4">
-      <div class="card-image center-align">
-        <img class="responsive-img card-panel" src="{{photo.url}}" />
-        <a class="btn red" href="{% url 'delete_photo' project.id photo.id %}"
-          >Delete</a
-        >
+    <div class="col s12 m6">
+      <div class="card">
+        <div class="card-image">
+          <img class="responsive-img card-panel" src="{{photo.url}}" />
+          <span class="card-title"
+            ><a
+              class="red-text hoverable"
+              href="{% url 'delete_photo' project.id photo.id %}"
+              >Delete</a
+            ></span
+          >
+        </div>
       </div>
     </div>
-    {% empty %} {% comment %}
-    <div class="card-panel teal-text center-align">No Photos Uploaded</div>
-    {% endcomment %}
+    {% empty %}
     <p>No photos</p>
     {% endfor %}
   </div>
