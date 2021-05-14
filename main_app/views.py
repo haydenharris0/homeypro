@@ -242,7 +242,7 @@ def budget(request):
     projects = Project.objects.filter(user=request.user)
     budget_form = BudgetForm()
     sum_of_expenses = Budget.objects.filter(
-        user=request.user).aggregate(Sum("cost"))
+        user=request.user).aggregate(Sum("cost"))['cost__sum'] or 0.00
     context = {
         'homes': homes,
         'budget': budget,
