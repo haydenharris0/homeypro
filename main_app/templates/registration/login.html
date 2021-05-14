@@ -1,18 +1,20 @@
 {% load static %} {% include 'header.html' %}
 
-<h1>Log In</h1>
+<body class="grey lighten-2">
+  <h1>Log In</h1>
 
-<form method="post" action="{% url 'login' %}">
-  {% csrf_token %} {{ form.as_p }}
-  <input type="submit" class="btn blue darken-4" value="login" />
-  <input type="hidden" name="next" value="{{ next }}" />
-</form>
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %} {{ form.as_p }}
+    <input type="submit" class="btn blue darken-4" value="login" />
+    <input type="hidden" name="next" value="{{ next }}" />
+  </form>
 
-<div class="center-align">
-  <h4>for Demo use</h4>
-  <p>username: demo</p>
-  <p>password: demo1234</p>
-  <div></div>
-</div>
+  <div class="center-align">
+    <h4>for Demo use</h4>
+    <p>username: demo</p>
+    <p>password: demo1234</p>
+    <div></div>
+  </div>
+</body>
 
 {% include 'footer.html' %}

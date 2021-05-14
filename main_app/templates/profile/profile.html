@@ -2,7 +2,7 @@
 
 {% include 'header.html' %}
 
-<body>
+<body class="grey lighten-2">
 
   <h1 class="center-align">Your Profile</h1>
 
@@ -22,7 +22,7 @@
         <tbody>
           <tr>
             <td>
-              <a class="black-text" href="{% url 'homes_detail' home.id %}">{{ home.nickname }}</a>
+              <a class="blue-text text-darken-4 btn-flat" href="{% url 'homes_detail' home.id %}">{{ home.nickname }}</a>
             </td>
             <td>{{ home.address }}</td>
             <td>{{ home.city }}</td>
@@ -48,7 +48,7 @@
         <tbody>
           <tr>
             <td>
-              <a class="black-text" href="{% url 'project_detail' project.id %}">{{ project.name }}</a>
+              <a class="blue-text text-darken-4 btn-flat" href="{% url 'project_detail' project.id %}">{{ project.name }}</a>
             </td>
             <td>{{ project.home.nickname }}</td>
             <td>{{ project.budget }}</td>
@@ -74,7 +74,7 @@
         <tbody>
           <tr>
             <td>
-              <a class="black-text" href="{% url 'contacts_detail' contact.id %}">{{ contact.name }}</a>
+              <a class="blue-text text-darken-4 btn-flat" href="{% url 'contacts_detail' contact.id %}">{{ contact.name }}</a>
             </td>
             <td>{{ contact.business }}</td>
             <td>{{ contact.phone }}</td>
