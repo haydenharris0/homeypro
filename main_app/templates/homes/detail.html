@@ -57,8 +57,14 @@
   </ul>
   {% comment %} End Project List {% endcomment %}
 
-  <a class="btn z-depth-5 blue darken-4 white-text" href="{% url 'update_home' home.id %}">Edit Home</a>
-  <a class="btn z-depth-5 red white-text" href="{% url 'delete_home' home.id %}">Delete Home</a>
+  <div class="row">
+    <div class="col m6">
+      <a class="btn z-depth-5 blue darken-4 white-text" href="{% url 'update_home' home.id %}">Edit Home</a>
+      <a class="btn z-depth-5 red white-text" href="{% url 'delete_home' home.id %}">Delete Home</a>
+    </div>
+  </div>
+
+  
 
 </body>
 

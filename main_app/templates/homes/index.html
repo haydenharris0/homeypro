@@ -20,6 +20,12 @@
     <div>No homes</div>
     {% endfor %}
   </div>
+
+  <div class="row">
+    <div class="col m6">
+      <a class="btn" href="{% url 'create_home'%}">Add a home</a>
+    </div>
+  </div>
 </body>
 
 {% include 'footer.html' %}

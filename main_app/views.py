@@ -12,6 +12,7 @@ import uuid
 import boto3
 from decouple import config
 
+
 S3_BASE_URL = config('S3_BASE_URL')
 
 BUCKET = config('BUCKET')

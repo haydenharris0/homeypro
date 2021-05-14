@@ -9,7 +9,7 @@
   {% comment %} grid for Homes {% endcomment %}
   <div class="row">
     <div class="col s4">
-      <h4 class="center">Homes</h4>
+      <h4 class="center">Homes <a href="{% url 'create_home' %}"><i class="material-icons black-text">add_circle_outlined</i></a></h4>
       <table class="highlight centered"> 
         <thead>
           <tr>
@@ -41,7 +41,7 @@
           <tr>
             <th>Project</th>
             <th>House</th>
-            <th>Budget</th>
+            <th>Start Date</th>
           </tr>
         </thead>
         {% for project in projects %}
@@ -51,7 +51,8 @@
               <a class="blue-text text-darken-4 btn-flat" href="{% url 'project_detail' project.id %}">{{ project.name }}</a>
             </td>
             <td>{{ project.home.nickname }}</td>
-            <td>{{ project.budget }}</td>
+            <td>{{ project.start_date }}</td>
+            
           </tr>
         {% endfor %}
         </tbody>
@@ -61,7 +62,7 @@
 
     {% comment %} grid for contacts {% endcomment %}
     <div class="col s4">
-      <h4 class="center">Contacts</h4>
+      <h4 class="center">Contacts <a href="{% url 'create_contact' %}"><i class="material-icons black-text">add_circle_outlined</i></a></h4>
       <table class="highlight centered">
         <thead>
           <tr>
