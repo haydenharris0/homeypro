@@ -44,7 +44,9 @@
     {% for project in home.project_set.all %}
       <li class="collection-item">
         <div>
-          {{ project.name }}<a href="{% url 'project_detail' project.id %}" class="secondary-content"><i class="material-icons black-text">add_circle</i></a>
+          <h5>{{ project.name }} <a href="{% url 'project_detail' project.id %}" class="secondary-content"><i class="material-icons black-text">add_circle</i></a></h5>
+          <p style="text-indent: 25px">start date: {{project.start_date}}</p>
+          <p style="text-indent: 25px">end date: {{project.end_date}}</p>
         </div>
       </li>
       {%empty%}

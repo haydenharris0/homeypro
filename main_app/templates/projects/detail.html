@@ -9,20 +9,60 @@
 {% include 'header.html' %}
 
 <body class="grey lighten-2">
-  <div class="">
-    <h1 class="center-align">{{ project.name}}</h1>
-    <p><strong>Project Name:</strong> {{ project.name }}</p>
-    <p><strong>Budget:</strong> {{ project.budget }}</p>
-    <p><strong>Home:</strong> {{ project.home }}</p>
-    <p><strong>Project Start Date:</strong> {{ project.start_date }}</p>
-    <p><strong>Project End Date:</strong> {{ project.end_date }}</p>
-    <p><strong>Project Notes:</strong> {{ project.notes }}</p>
-  </div>
+  <h1 class="center-align">{{ project.name}}</h1>
 
-  <a class="btn blue darken-4" href="{% url 'update_project' project.id %}"
-    >Edit Project</a
-  >
-  <a class="btn red" href="{% url 'delete_project' project.id %}">Delete</a>
+  <div class="row container">
+    <div class="col s12 m12">
+      <div class="card-panel z-depth-5">
+        <div>
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                  <h5>Budget:</h5>
+                  <p style="text-indent: 25px">{{ project.budget }}</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <h5>Home:</h5>
+                  <p style="text-indent: 25px">{{ project.home }}</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <h5>Project Start Date:</h5>
+                  <p style="text-indent: 25px">{{ project.start_date }}</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <h5>Project End Date:</h5>
+                  <p style="text-indent: 25px">{{ project.end_date }}</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <h5>Project Notes:</h5>
+                  <p style="text-indent: 25px">{{ project.notes }}</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <a
+          class="btn blue darken-4"
+          href="{% url 'update_project' project.id %}"
+          >Edit Project</a
+        >
+        <a
+          class="secondary-content btn red"
+          href="{% url 'delete_project' project.id %}"
+          >Delete</a
+        >
+      </div>
+    </div>
+  </div>
 
   {% comment %} photo upload form {% endcomment %}
   <div class="row">
