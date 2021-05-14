@@ -8,11 +8,25 @@
         </p>
       </div>
       <div class="col l4 offset-l2 s12">
-        <h5 class="white-text">Your Account</h5>
+        <a class="white-text" href="{% url 'profile' %}">
+          <h5 class="white-text hoverable">Your Account</h5>
+        </a>
         <ul>
-          <li><a class="white-text" href="{% url 'signup' %}">Sign Up</a></li>
-          <li><a class="white-text" href="{% url 'login' %}">Log In</a></li>
-          <li><a class="white-text" href="{% url 'profile' %}">Profile</a></li>
+          <li>
+            <a class="white-text hoverable" href="{% url 'create_home' %}"
+              >Add Home</a
+            >
+          </li>
+          <li>
+            <a class="white-text hoverable" href="{% url 'create_contact' %}"
+              >Add Contact</a
+            >
+          </li>
+          <li>
+            <a class="white-text hoverable" href="{% url 'budget' %}"
+              >Expenses</a
+            >
+          </li>
         </ul>
       </div>
     </div>

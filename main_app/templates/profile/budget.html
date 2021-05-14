@@ -3,7 +3,7 @@
 <body class="grey lighten-2">
   <div class="row">
     <div class="col s12">
-      <h4 class="center">Expenses</h4>
+      <h1 class="center">Expenses</h1>
 
       {% comment %} Table showing all Expenses {% endcomment %}
       <table class="highlight centered">
@@ -71,18 +71,9 @@
     <div class="col s12 m6 center-align">
       <div class="card-panel z-depth-5 center-align">
         <div>
-          <table class="container centered">
-            <thead>
-              <tr>
-                <th>Total Spent</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>${{ sum_of_expenses }}</td>
-              </tr>
-            </tbody>
-          </table>
+          <h4>Total Spent</h4>
+          <hr />
+          <p>${{ sum_of_expenses }}</p>
         </div>
       </div>
     </div>
