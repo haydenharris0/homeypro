@@ -4,7 +4,6 @@
   <h1 class="center-align">Delete Confirmation</h1>
   <h4 class="center-align">Are you sure you want to delete the?</h4>
   <h4 class="center-align">{{ object.nickname }}</h4>
-  <hr />
   <div class="row container">
     <div class="col s3">
       <p>{{ object.bedrooms}} <i class="medium material-icons">bed</i></p>
@@ -36,7 +35,6 @@
   <h5 class="center-align">
     Address: {{ object.address}} {{object.city}}, {{object.state}}
   </h5>
-  <hr />
 
   <form class="center-align" action="" method="POST">
     {% csrf_token %}

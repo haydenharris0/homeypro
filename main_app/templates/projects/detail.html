@@ -20,14 +20,14 @@
             <tbody>
               <tr>
                 <td>
-                  <h5>Budget:</h5>
-                  <p style="text-indent: 25px">{{ project.budget }}</p>
+                  <h5>Home:</h5>
+                  <p style="text-indent: 25px">{{ project.home }}</p>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <h5>Home:</h5>
-                  <p style="text-indent: 25px">{{ project.home }}</p>
+                  <h5>Budget:</h5>
+                  <p style="text-indent: 25px">{{ project.budget }}</p>
                 </td>
               </tr>
               <tr>
@@ -71,16 +71,20 @@
                   value="Upload Photo"
                 />
               </div>
-              <a
-                class="secondary-content btn red"
-                href="{% url 'delete_project' project.id %}"
-                >Delete</a
-              >
-              <a
-                class="secondary-content btn blue darken-4"
-                href="{% url 'update_project' project.id %}"
-                >Edit Project</a
-              >
+              <div class="row">
+                <div class="col m4">
+                  <a
+                    class="btn blue darken-4"
+                    href="{% url 'update_project' project.id %}"
+                    >Edit Project</a
+                  >
+                  <a
+                    class="btn red"
+                    href="{% url 'delete_project' project.id %}"
+                    >Delete</a
+                  >
+                </div>
+              </div>
             </form>
           </div>
         </div>

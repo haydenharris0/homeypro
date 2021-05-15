@@ -4,14 +4,45 @@
   <h1 class="center-align">Delete Confirmation</h1>
   <h4 class="center-align">
     Are you sure you want to delete the
-    <span>{{ object.name }}</span>?
+    <span>{{ object.name }} and all associated photos</span>?
   </h4>
+  <div class="row">
+    <table class="container centered">
+      <tbody>
+        <tr>
+          <td>
+            <h5>Home:</h5>
+            <p>{{ object.home }}</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <h5>Budget:</h5>
+            <p>{{ object.budget }}</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <h5>Notes:</h5>
+            <p>{{ object.notes }}</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <form class="center-align" action="" method="POST">
     {% csrf_token %}
-    <input class="btn red" type="submit" value="Delete!" />
-    <a class="btn blue darken-4" href="{% url 'project_detail' project.id %}"
-      >Cancel</a
-    >
+
+    <div class="row container">
+      <div class="col m4">
+        <input class="btn red" type="submit" value="Delete!" />
+        <a
+          class="btn blue darken-4"
+          href="{% url 'project_detail' project.id %}"
+          >Cancel</a
+        >
+      </div>
+    </div>
   </form>
 </body>
 

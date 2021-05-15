@@ -30,14 +30,15 @@
   <header>
     <nav>
       <div class="blue-grey darken-3">
-        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'home' %}">&nbsp Home</a>
         <ul class="right">
           {% if user.is_authenticated %}
           <li class="loggedInOptions">
             <a href="{% url 'homes_index'%}">Your Home's</a>
           </li>
           <li><a href="{% url 'create_home' %}">Add Home</a></li>
-          <li><a href="{% url 'profile' %}">profile</a></li>
+          <li><a href="{% url 'create_contact' %}">Add Contact</a></li>
+          <li><a href="{% url 'profile' %}">Profile</a></li>
           <li><a href="{% url 'logout' %}">Log out</a></li>
           {% else %}
           <li><a href="{% url 'signup' %}">Sign Up</a></li>
