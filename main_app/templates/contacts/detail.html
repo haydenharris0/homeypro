@@ -6,7 +6,7 @@
   <div class="row container">
     <div class="col s12 m12">
       <div class="card-panel z-depth-5">
-        <div>
+        <div class="row">
           <table>
             <tbody>
               <tr>
@@ -43,16 +43,14 @@
           </table>
         </div>
         <div class="row">
-          <div class="col m12">
+          <div class="col m4">
             <a
-              class="secondary-content btn red"
-              href="{% url 'delete_contact' contact.id %}"
-              >Delete</a
-            >
-            <a
-              class="secondary-content btn blue darken-4"
+              class="btn blue darken-4"
               href="{% url 'update_contact' contact.id %}"
               >Edit Contact</a
+            >
+            <a class="btn red" href="{% url 'delete_contact' contact.id %}"
+              >Delete</a
             >
           </div>
         </div>
