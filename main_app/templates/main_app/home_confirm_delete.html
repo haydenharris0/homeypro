@@ -2,10 +2,42 @@
 
 <body class="grey lighten-2">
   <h1 class="center-align">Delete Confirmation</h1>
-  <h4 class="center-align">
-    Are you sure you want to delete the
-    <span>{{ object.nickname }}</span>?
-  </h4>
+  <h4 class="center-align">Are you sure you want to delete the?</h4>
+  <h4 class="center-align">{{ object.nickname }}</h4>
+  <hr />
+  <div class="row container">
+    <div class="col s3">
+      <p>{{ object.bedrooms}} <i class="medium material-icons">bed</i></p>
+      <p>Bedrooms</p>
+    </div>
+    <div class="col s3">
+      <p>
+        {{ object.bathrooms}} &nbsp;
+        <i class="medium material-icons">bathtub</i>
+      </p>
+      <p>Bathrooms</p>
+    </div>
+    <div class="col s3">
+      <p>
+        {{ object.square_feet}} &nbsp;
+        <i class="medium material-icons">square_foot</i>
+      </p>
+      <p>Square feet</p>
+    </div>
+    <div class="col s3">
+      <p>
+        {{ object.year_built}} &nbsp;<i class="medium material-icons"
+          >schedule</i
+        >
+      </p>
+      <p>Year built</p>
+    </div>
+  </div>
+  <h5 class="center-align">
+    Address: {{ object.address}} {{object.city}}, {{object.state}}
+  </h5>
+  <hr />
+
   <form class="center-align" action="" method="POST">
     {% csrf_token %}
     <input class="btn red" type="submit" value="Delete!" />

@@ -1,6 +1,10 @@
 {% load static %} {% include 'header.html' %}
 
 <body class="grey lighten-2">
+  <div class="center-align">
+    <h1>All Photos</h1>
+    <hr />
+  </div>
   <div class="row">
     {% for photo in photo %}
     <div class="col s12 m6">
@@ -19,7 +23,11 @@
     <div class="card-panel teal-text center-align">No Photos Uploaded</div>
     {% endfor %}
   </div>
-  <a class="btn blue darken-4" href="{% url 'profile'%}">Back to Profile</a>
+  <div class="row">
+    <div class="col m6">
+      <a class="btn blue darken-4" href="{% url 'profile'%}">Back to Profile</a>
+    </div>
+  </div>
 </body>
 
 {% include 'footer.html' %}

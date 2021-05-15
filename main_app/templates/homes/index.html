@@ -1,6 +1,14 @@
 {% load static %} {% include 'header.html' %}
 
 <body class="grey lighten-2">
+  <h2 class="center">
+    Your Homes
+    <a href="{% url 'create_home' %}"
+      ><i class="material-icons small black-text">add_circle_outlined</i></a
+    >
+  </h2>
+  <hr />
+
   <div class="row">
     {% for home in homes %}
     <div class="col s12 m6">

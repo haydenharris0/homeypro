@@ -4,13 +4,13 @@
 
 <body class="grey lighten-2">
 
-  <h1 class="center-align">{{ user }}</h1>
+  <h1 class="center-align">{{ user }}'s Profile</h1>
   <hr />
 
   {% comment %} grid for Homes {% endcomment %}
   <div class="row">
     <div class="col s4">
-      <h4 class="center">Homes <a href="{% url 'create_home' %}"><i class="material-icons black-text">add_circle_outlined</i></a></h4>
+      <h4 class="center">Homes &nbsp<a href="{% url 'create_home' %}"><i class="material-icons small black-text">add_circle_outlined</i></a></h4>
       <table class="highlight centered"> 
         <thead>
           <tr>
@@ -63,7 +63,7 @@
 
     {% comment %} grid for contacts {% endcomment %}
     <div class="col s4">
-      <h4 class="center">Contacts <a href="{% url 'create_contact' %}"><i class="material-icons black-text">add_circle_outlined</i></a></h4>
+      <h4 class="center">Contacts &nbsp<a href="{% url 'create_contact' %}"><i class="material-icons small black-text">person_add</i></a></h4>
       <table class="highlight centered">
         <thead>
           <tr>

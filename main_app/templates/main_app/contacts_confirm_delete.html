@@ -3,9 +3,12 @@
 <body class="grey lighten-2">
   <h1 class="center-align">Delete Confirmation</h1>
   <h4 class="center-align">
-    Are you sure you want to delete the
+    Are you sure you want to delete
     <span>{{ object.name }}</span>?
   </h4>
+  <h5 class="center-align">phone: {{ object.phone}}</h5>
+  <h5 class="center-align">Business: {{ object.business}}</h5>
+  <h5 class="center-align">Notes: {{ object.notes}}</h5>
   <form class="center-align" action="" method="POST">
     {% csrf_token %}
     <input class="btn red" type="submit" value="Delete!" />
