@@ -12,50 +12,32 @@
   crossorigin="anonymous"
 ></script>
 
-{% comment %} ----- Materialize {% endcomment %}
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-/>
-<link
-  href="https://fonts.googleapis.com/icon?family=Material+Icons"
-  rel="stylesheet"
-/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
 <body class="grey lighten-2">
-  <h2 class="center">
-    Your Homes
-    <a href="{% url 'create_home' %}"
-      ><i class="material-icons small black-text">add_circle_outlined</i></a
-    >
-  </h2>
-  <hr />
-
-  <div class="row">
+  <div class="">
+    <h1 class="text-center">Your Homes</h1>
+    <hr />
+  </div>
+  <div class="d-flex flex-wrap">
     {% for home in homes %}
-    <div class="col s12 m6">
-      <div class="small card">
-        <div class="card-content">
-          <span class="card-title"><h3>{{ home.nickname }}</h3></span>
-          <h5>{{ home.address }}, {{ home.city }}, {{ home.state}}.</h5>
+    <div class="col-lg-4 p-3">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">{{ home.nickname }}</h3>
+          <h6 class="card-subtitle mb-2 text-muted">{{ home.nickname }}</h6>
+          <p class="card-text">
+            {{ home.address }}, {{ home.city }}, {{ home.state}}.
+          </p>
+          <a
+            href="{% url 'homes_detail' home.id %}"
+            class="btn btn-outline-dark stretched-link"
+            >See Details</a
+          >
         </div>
-        <a href="{% url 'homes_detail' home.id %}">
-          <div class="card-action hoverable blue-text text-darken-4">
-            More details
-          </div>
-        </a>
       </div>
     </div>
     {%empty%}
     <div>No homes</div>
     {% endfor %}
-  </div>
-
-  <div class="row">
-    <div class="col m6">
-      <a class="btn blue darken-4" href="{% url 'create_home'%}">Add a home</a>
-    </div>
   </div>
 </body>
 
