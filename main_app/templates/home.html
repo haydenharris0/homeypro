@@ -1,7 +1,19 @@
-{% load static %} {% include 'header.html' %}
+{% load static %} {% include 'header.html' %} {% comment %} ----- Bootsrap -----
+{% endcomment %}
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+  crossorigin="anonymous"
+/>
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+  crossorigin="anonymous"
+></script>
 
 <body class="grey lighten-2">
-  <div class="center-align">
+  <div class="text-center p-3">
     <h1>Homeypro</h1>
     <hr />
   </div>
@@ -15,44 +27,98 @@
     </p>
   </div>
 
-  <div class="row container">
-    <div class="col s12 m4">
-      <a href="{% url 'signup'%}">
-        <div class="card-panel z-depth-5 center-align hoverable">
-          <div>
-            <i class="large material-icons blue-grey-text">add</i>
+  {% comment %} cards  {% endcomment %}
+  <div class="d-flex justify-content-center p-3 row">
+    <div class="col-sm-3">
+      <a class="text-dark text-decoration-none" href="{% url 'signup'%}">
+        <div class="card border border-dark ">
+          <div class="card-body text-dark text-center">
+            <i>
+              <svg xmlns="http://www.w3.org/2000/svg" width="106" height="106" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
+              </svg>
+            </i>
+              <div class="p-3">
+                <p class="card-text">Sign up</p>
+              </div>
           </div>
-          <span class="black-text"> Sign up </span>
-        </div>
-      </a>
+        </a>
+      </div>
     </div>
-    <div class="col s12 m4">
-      <a href="{% url 'login'%}">
-        <div class="card-panel z-depth-5 center-align hoverable">
-          <div>
-            <i class="large material-icons blue-grey-text">login</i>
+    <div class="col-sm-3">
+      <div class="card border-dark">
+        <a class="text-dark text-decoration-none" href="{% url 'login'%}">
+          <div class="card-body text-dark text-center">
+            <i>
+              <svg xmlns="http://www.w3.org/2000/svg" width="106" height="106" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+                <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+            </svg>
+            </i>
+            <div class="p-3">
+              <p class="card-text">Login</p>
+            </div>
           </div>
-          <span class="black-text"> login </span>
-        </div>
-      </a>
+        </a>
+      </div>
     </div>
-    <div class="col s12 m4">
-      <a href="{% url 'profile'%}">
-        <div class="card-panel z-depth-5 center-align hoverable">
-          <div>
-            <i class="large material-icons blue-grey-text">account_circle</i>
+    <div class="col-sm-3">
+      <div class="card border-dark">
+        <a class="text-dark text-decoration-none" href="{% url 'profile'%}">
+          <div class="card-body text-dark text-center">
+            <i>
+              <svg xmlns="http://www.w3.org/2000/svg" width="106" height="106" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+            </svg>
+            </i>
+            <div class="p-3">
+              <p class="card-text">Profile</p>
+            </div>
           </div>
-          <span class="black-text"> Your Profile </span>
         </div>
       </a>
     </div>
   </div>
 
-  <div class="center-align">
+  <div class="text-center p-3">
     <p>for Demo use</p>
     <p>username: demo</p>
     <p>password: demo1234</p>
   </div>
 </body>
 
-{% include 'footer.html' %}
+{% include 'footer.html' %} {% comment %}
+<div class="row container">
+  <div class="col s12 m4">
+    <a href="{% url 'signup'%}">
+      <div class="card-panel z-depth-5 center-align hoverable">
+        <div>
+          <i class="large material-icons blue-grey-text">add</i>
+        </div>
+        <span class="black-text"> Sign up </span>
+      </div>
+    </a>
+  </div>
+  <div class="col s12 m4">
+    <a href="{% url 'login'%}">
+      <div class="card-panel z-depth-5 center-align hoverable">
+        <div>
+          <i class="large material-icons blue-grey-text">login</i>
+        </div>
+        <span class="black-text"> login </span>
+      </div>
+    </a>
+  </div>
+  <div class="col s12 m4">
+    <a href="{% url 'profile'%}">
+      <div class="card-panel z-depth-5 center-align hoverable">
+        <div>
+          <i class="large material-icons blue-grey-text">account_circle</i>
+        </div>
+        <span class="black-text"> Your Profile </span>
+      </div>
+    </a>
+  </div>
+</div>
+{% endcomment %}
